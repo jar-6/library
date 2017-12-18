@@ -1,0 +1,22 @@
+div#canvas-frame {
+    border: 1px solid white;
+    cursor: pointer;
+    width: 900px;
+    height: 600px;
+    background-color: #222222;
+    overflow: hidden;
+    position: fixed;
+}
+div#list-frame {
+    border: 1px solid black;
+    cursor: pointer;
+    width: 450px;
+    height: 600px;
+    padding: 20px;
+    position: fixed;
+    left: 900px;
+}
+.list{
+	font-size: 20px;
+	margin: 10px;
+}
