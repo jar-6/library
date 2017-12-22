@@ -6,6 +6,8 @@ div#canvas-frame {
     background-color: #222222;
     overflow: hidden;
     position: fixed;
+    top:0;
+
 }
 div#list-frame {
     border: 1px solid black;
@@ -20,3 +22,47 @@ div#list-frame {
 	font-size: 20px;
 	margin: 10px;
 }
+div#back{
+    position: fixed;
+    z-index: 100;
+    top:20px;
+    left:20px;
+    width: 50px;
+    height: 50px;
+    color: white;
+    display: none
+}
+#books{
+	/*border: 3px solid red;*/
+	position: fixed;
+    z-index: 100;
+ 
+    width: 0px;
+    height: 0px;
+ 
+}
+.book{
+	/*border: 3px solid red;*/
+	position: relative;
+    z-index: 100;
+    	    width: 75px;
+    height: 72px;
+
+    left: 10px;
+    display: inline-block;
+ 
+}
+.book-img{
+    width: 52px;
+    height: 70px;
+}
+/*#element-frame{
+    border: 1px solid white;
+    cursor: pointer;
+    width: 900px;
+    height: 600px;
+    background-color: #222222;
+    overflow: hidden;
+    position: fixed;
+    top:0;	
+}*/
