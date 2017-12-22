@@ -338,7 +338,7 @@ list.forEach(renderBook)
         var window4=window3.clone();
         window4.translateOnAxis(new THREE.Vector3(1,0,0),rightL-windowB);
         var glass = new THREE.Mesh(  new THREE.CubeGeometry(rightL,boxH-2*windowB),new THREE.MeshLambertMaterial({map:glassMap}));
-        glass.position.set(leftL+rightL/2,boxH*(i+1),(boxD+windowD)/2);
+        glass.position.set(leftL+rightL/2,boxH*(i+1)+windowB/2,(boxD+windowD)/2);
         doneWindow.add(window1,window2,window3,window4);
         scene.add(doneWindow);
         scene.add(glass);
