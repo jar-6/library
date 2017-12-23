@@ -15,14 +15,24 @@ $(document).ready(function(){
   var clickNum;
   var hoverNum;
   var preClickNum;
-  var preHoverNum;
+  var preHoverNum=0;
   var q=new THREE.Object3D();
   var raycaster = new THREE.Raycaster();
   var mouse = new THREE.Vector2(),INTERSECTED;
-//镜头值预设  
-  var width = document.getElementById('canvas-frame').clientWidth
-  var height = document.getElementById('canvas-frame').clientHeight
+//镜头值预设
+  
+  var width = window.innerWidth;
+  var height = window.innerHeight;    
+  $("#canvas-frame").css("width",width);  
+  $("#canvas-frame").css("height",height);
+  $("#list-frame").css("width",width/3);  
+  $("#list-frame").css("height",height-150);
+  //var ratio=width/1500;  
+  //alert(ratio)
+  //document.getElementById('canvas-frame').clientWidth
+  //var height = document.getElementById('canvas-frame').clientHeight
   var zoomN=6;
+  var ratio=width/1000
 //数列预设
   var boxArr=[];var windowArr=[];var glassArr=[];var textArr=[];
   var bookArr=[];
@@ -33,18 +43,18 @@ $(document).ready(function(){
   var shelfGroup = new THREE.Object3D();
   var bookGroup = new THREE.Object3D();
 //形状值预设
-  var boxH=50;
-  var boxD=200;
-  var windowD=25;
-  var windowB=4;
-  var boxL=[100,100,100,100];
-  var undonePercent=[1,0.5,1,1,1];
+  var boxH=50*ratio;
+  var boxD=200*ratio;
+  var windowD=25*ratio;
+  var windowB=4*ratio;
+  var boxL=[100*ratio,100*ratio,100*ratio,100*ratio];
+  var undonePercent=[1,0.5,0.3,0.7,0.2];
   var bottonL=0;
-  var topL=100;
+  var topL=100*ratio;
   boxL.unshift(bottonL);
   boxL.push(topL);
-  var radiumCol=3.5;
-  var shelfH=12,shelfD=12,shelfL=12,shelfBorder=1,shelfRowN=3,shelfColN=7,bookH=8,bookD=2,bookL=5;
+  var radiumCol=3.5*ratio;
+  var shelfH=12*ratio,shelfD=12*ratio,shelfL=12*ratio,shelfBorder=1*ratio,shelfRowN=3,shelfColN=7
 //材质值预设 
   var boxColor=[0x0000ff,0x00ffff,0x00ff00,0xffff00,0x00ff00,0xffff00,0x0000ff];
   var whiteM = new THREE.MeshLambertMaterial({color:0xcccccc});
@@ -57,12 +67,7 @@ $(document).ready(function(){
     grassMap.repeat.set(3, 1.5 );
   });
   var grassM = new THREE.MeshLambertMaterial({map:grassMap})
- function renderBook(value,index,arr){
-  if(value!==undefined){
-  var src=value.img;
-  $("#books").append("<div class='book'><img class='book-img' src='"+src+"'/></div>")
-  }
-  }
+ 
 //绑定事件
 //点击后退
  $("#back").click(function() {
@@ -82,7 +87,7 @@ $(document).ready(function(){
     console.log(num1,num2);
     myBookList[num1].push(bookList[num1][num2]) 
     console.log(myBookList);
-    boxL[num1+1]+=25;
+    boxL[num1+1]+=25*ratio;
     boxArr.forEach(function(value){scene.remove(value)})
     glassArr.forEach(function(value){scene.remove(value)})
     windowArr.forEach(function(value){scene.remove(value)})
@@ -98,7 +103,7 @@ $(document).ready(function(){
     }*/
   });
 //点击楼层
-
+$("#list-frame").show();
   window.addEventListener("mousedown",onmousedown);
   function onmousedown(e){
 
@@ -108,22 +113,22 @@ $(document).ready(function(){
     var intersects = raycaster.intersectObjects(scene.children);
     if(intersects.length){
       var selected = intersects[0];
-      if(selected.point.y<75){clickNum=Math.ceil(selected.point.y/50);}
-      else{clickNum=Math.round(selected.point.y/50);}
+      clickNum=Math.floor(selected.point.y/boxH);
       console.log(selected.point,clickNum);
-      if(clickNum<2){
+      if(clickNum<1){
         showBookList();
         console.log("warehouse",clickNum,preClickNum);
-        scene.add(boxArr[preClickNum-2],windowArr[preClickNum-2],glassArr[preClickNum-2]);
+        scene.add(boxArr[preClickNum-1],windowArr[preClickNum-1],glassArr[preClickNum-1]);
+        
        }
-      else if(clickNum>=2){
+      else if(clickNum>=1){
         console.log("library");
         if(clickNum!==preClickNum){ 
-          console.log("diff",clickNum,preClickNum);
-          scene.remove(boxArr[clickNum-2],windowArr[clickNum-2],glassArr[clickNum-2]);
-          shelfGroup.position.set(shelfL*shelfColN/2,clickNum*boxH-boxH/2+2+windowB/2,boxD/2-30);
+          console.log("diff",clickNum,preClickNum,selected.point.y);
+          scene.remove(boxArr[clickNum-1],windowArr[clickNum-1],glassArr[clickNum-1]);
+          shelfGroup.position.set(shelfL*shelfColN/2,clickNum*boxH+2*ratio+windowB/2,boxD/2-30);
           scene.add(shelfGroup);
-          scene.add(boxArr[preClickNum-2],windowArr[preClickNum-2],glassArr[preClickNum-2]);
+          scene.add(boxArr[preClickNum-1],windowArr[preClickNum-1],glassArr[preClickNum-1]);
         }
 
         else{
@@ -131,7 +136,7 @@ $(document).ready(function(){
           
           cameraStatus=1;
           //camera = new THREE.OrthographicCamera(width / - 2+60*n, width / 2+60*n,height / 2-100, height / - 2-100, 100, 1200 );
-          camera.position.set(573,220-boxH*(6-clickNum)-boxH/2,600);
+          camera.position.set(573+width/24,220-boxH*(6-clickNum)-boxH/2+height/12,600);
           camera.up.set(0,0,0);
           //camera.lookAt(new THREE.Vector3(100,0,0));
          // camera.position.set(250,220-boxH*(6-clickNum),600);
@@ -159,18 +164,20 @@ $(document).ready(function(){
       if ( INTERSECTED != intersects[ 0 ].object ) {
         if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
         var selected = intersects[0];
-        if(selected.point.z>112&&selected.point.z<126){
-          hoverNum=Math.round(selected.point.y/50-1);
+        if(selected.point.z>112*ratio&&selected.point.z<126*ratio){
+          hoverNum=Math.floor(selected.point.y/boxH);
+
           INTERSECTED = selected.object;
-          INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+         // INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
           //INTERSECTED.material.emissive.setHex( 0xffff00 );
-          if(hoverNum!==preHoverNum){
+          if(hoverNum!==preHoverNum){console.log("hoverdiff",hoverNum,preHoverNum)
             scene.add(textArr[hoverNum-1]);
             scene.remove(textArr[preHoverNum-1]);
             glassArr[hoverNum-1].material.emissive.setHex( 0xffff00 );
+            glassArr[preHoverNum-1].material.emissive.setHex( 0x000000 );
           }
-          preHoverNum=hoverNum;
         }
+        preHoverNum=hoverNum;
       }
     } 
     else {
@@ -218,7 +225,12 @@ $(document).ready(function(){
       }
     },3000);
   }
-
+  function renderBook(value,index,arr){
+    if(value!==undefined){
+    var src=value.img;
+    $("#books").append("<div class='book'><img class='book-img' src='"+src+"'/></div>")
+    }
+  }
   function putBook(clickNum){
     var list=myBookList[clickNum-2];
     var frameWidth=shelfL*(shelfColN-1)*zoomN*1.05;
@@ -311,15 +323,15 @@ list.forEach(renderBook)
         });
       })(i);
       var box = new THREE.Mesh( new THREE.CubeGeometry(boxL[i],boxH,boxD),new THREE.MeshLambertMaterial({map:boxMap}));
-      box.position.set(boxL[i]/2,boxH*(i+1),0);
+      box.position.set(boxL[i]/2,boxH*(i+1/2),0);
       scene.add(box);
       boxArr.push(box);
       var floor1 = new THREE.Mesh(new THREE.CubeGeometry(boxL[i],windowB,boxD+20),whiteM);
-      floor1.position.set(boxL[i]/2,boxH*(i+1)-boxH/2+windowB/2,0);
+      floor1.position.set(boxL[i]/2,boxH*i+windowB/2,0);
       var floor2=floor1.clone();
       floor2.translateOnAxis(new THREE.Vector3(0,1,0),boxH);
       var wall1= new THREE.Mesh( new THREE.CubeGeometry(2,boxH,boxD), new THREE.MeshLambertMaterial({map:boxMap}));
-      wall1.position.set(1,boxH*(i+1),0)
+      wall1.position.set(1,boxH*(i+1/2),0)
       var wall2=wall1.clone();
       wall2.translateOnAxis(new THREE.Vector3(1,0,0),boxL[i]-2);
       roomGroup.add(floor1,floor2,wall1,wall2)
@@ -330,15 +342,15 @@ list.forEach(renderBook)
       var doneWindow = new THREE.Object3D();
       if(i>0&&i<boxL.length-1&&undonePercent[i]<1){
         var window1 = new THREE.Mesh( new THREE.CubeGeometry(rightL,windowB,windowD),whiteM);
-        window1.position.set(rightL/2+leftL,boxH*(i+1)-boxH/2+windowB,(boxD+windowD)/2);
+        window1.position.set(rightL/2+leftL,boxH*i+windowB,(boxD+windowD)/2);
         var window2=window1.clone();
         window2.translateOnAxis(new THREE.Vector3(0,1,0),boxH-windowB/2);
         var window3 = new THREE.Mesh(new THREE.CubeGeometry(windowB,boxH,windowD),whiteM);
-        window3.position.set(leftL+windowB/2,boxH*(i+1),(boxD+windowD)/2)
+        window3.position.set(leftL+windowB/2,boxH*(i+1/2),(boxD+windowD)/2)
         var window4=window3.clone();
         window4.translateOnAxis(new THREE.Vector3(1,0,0),rightL-windowB);
         var glass = new THREE.Mesh(  new THREE.CubeGeometry(rightL,boxH-2*windowB),new THREE.MeshLambertMaterial({map:glassMap}));
-        glass.position.set(leftL+rightL/2,boxH*(i+1)+windowB/2,(boxD+windowD)/2);
+        glass.position.set(leftL+rightL/2,boxH*(i+1/2)+windowB/2,(boxD+windowD)/2);
         doneWindow.add(window1,window2,window3,window4);
         scene.add(doneWindow);
         scene.add(glass);
@@ -353,7 +365,7 @@ list.forEach(renderBook)
             text3D.position.set(position[0],position[1],position[2]);
             textArr.push(text3D);
           })
-        })([leftL+rightL/2-30,boxH*(i+1)-10,(boxD+2*windowD)/2], Math.floor((1-undonePercent[i])*100)+"%",[20,0.5]); 
+        })([leftL+rightL/2-30,boxH*(i+1/2)-10,(boxD+2*windowD)/2], Math.floor((1-undonePercent[i])*100)+"%",[20*ratio,0.5]); 
       }
       //树
       if(boxL[i]>boxL[i+1]){
@@ -368,18 +380,18 @@ list.forEach(renderBook)
       var column1b=column1.clone();
       var column2b=column2.clone();
       var arr=boxL.slice(i,boxL.length);
-      column1.position.set(-2*radiumCol,boxH*(i+1)/2,-boxD/2+radiumCol*2);
-      column2.position.set(-2*radiumCol,boxH*(i+1)/2,boxD/2-radiumCol*2);
-      column1b.position.set(0,boxH*(i+1)/2,-boxD/2+radiumCol*2);
-      column2b.position.set(0,boxH*(i+1)/2,boxD/2-radiumCol*2);
+      column1.position.set(-2*radiumCol,boxH*i/2,-boxD/2+radiumCol*2);
+      column2.position.set(-2*radiumCol,boxH*i/2,boxD/2-radiumCol*2);
+      column1b.position.set(0,boxH*i/2,-boxD/2+radiumCol*2);
+      column2b.position.set(0,boxH*i/2,boxD/2-radiumCol*2);
       columnGroup.add(column1b,column2b);
       if(i>0){
-        for(j=1;j*50<=Math.max.apply(Math,arr)+bottonL/2;j++){   
+        for(j=1;j*50*ratio<=Math.max.apply(Math,arr)+bottonL/2;j++){   
 
           var column1s=column1.clone();
           var column2s=column2.clone();
-          column1s.translateOnAxis(new THREE.Vector3(1,0,0),50*j);
-          column2s.translateOnAxis(new THREE.Vector3(1,0,0),50*j);
+          column1s.translateOnAxis(new THREE.Vector3(1,0,0),50*j*ratio);
+          column2s.translateOnAxis(new THREE.Vector3(1,0,0),50*j*ratio);
           columnGroup.add(column1s,column2s);
         }
       }
@@ -400,6 +412,6 @@ list.forEach(renderBook)
     renderer.render(scene, camera);
     requestAnimationFrame(animation);
   }   
- window.onload = threeStart();
+ //window.onload = threeStart();
 })
  
