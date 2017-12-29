@@ -1,30 +1,24 @@
 div#canvas-frame {
-    border: 1px solid white;
     cursor: pointer;
-    width: 900px;
-    height: 600px;
+    width: 0px;
+    height: 0px;
     background-color: #222222;
     overflow: hidden;
     position: fixed;
     top:0;
     z-index: 0;
-
 }
-div#list-frame {
-    
-    cursor: pointer;
-    width: 0px;
-    height: 0px;
+.sidebar{
     padding: 20px;
-    position: fixed;
-    left: 50px;
-    top:100px;
+    position: fixed;  
     z-index: 200;
     display: none;
-    /*background-color: rgba(255,255,255);*/
     background-color: #dddddd;
-    border-radius:30px;
+    border-radius:10px;
+    overflow-y:auto;
 }
+
+    
 .list{
 	font-size: 20px;
 	margin: 10px;
@@ -37,39 +31,38 @@ div#back{
     width: 50px;
     height: 50px;
     color: white;
-    display: none
+    display: none; 
 }
 #books{
-	border: 3px solid red;*/
+
 	position: fixed;
     z-index: 100;
- 
     width: 0px;
     height: 0px;
- 
+    left: 500px;
 }
 .book{
-	/*border: 3px solid red;*/
+	/*border: 1px solid red;*/
 	position: relative;
+    padding: 20px
     z-index: 100;
-    	    width: 75px;
-    height: 72px;
-
-    left: 10px;
+    left: 0px;
     display: inline-block;
- 
+
 }
 .book-img{
-    width: 52px;
-    height: 70px;
+    position: relative;
+    /*border: 3px solid red;*/
 }
-/*#element-frame{
-    border: 1px solid white;
-    cursor: pointer;
-    width: 900px;
-    height: 600px;
-    background-color: #222222;
-    overflow: hidden;
-    position: fixed;
-    top:0;	
-}*/
+.button{
+    /*background-color: #dddddd;*/
+    position: absolute;
+    z-index: 200;
+    display: none; 
+    font-weight: bold;
+
+}
+.read-state{
+    position: absolute;
+    z-index: 200;   
+}
