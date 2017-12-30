@@ -3,7 +3,8 @@ $(document).ready(function(){
 
   var scene;
   var light;
-  var camera;
+  var camera
+  var cameraP,cameraL
   var renderer;
 //书单预设
   var bookList=[];
@@ -24,14 +25,14 @@ $(document).ready(function(){
   var q=new THREE.Object3D();
   var raycaster = new THREE.Raycaster();
   var mouse = new THREE.Vector2(),INTERSECTED;
-//镜头值预设
+//canvas值预设
   var width = window.innerWidth;
   var height = window.innerWidth*0.6;
   if(width>1000){windowZoom=width/1000}
   else{windowZoom=1}
   $("#canvas-frame").css({"width":width/2+width*windowZoom/2,"height":height/2+height*windowZoom/2,"left":-width*windowZoom/2+width/2,"top":-height*windowZoom/2+height/2});  //windowZoom
 //形状预设
-  var boxArr,windowArr,glassArr,textArr,bookArr,floor1Arr
+  var boxArr,windowArr,glassArr,textArr,bookArr,floor1Arr,cataArr;
   var roomGroup,treeGroup,columnGroup,shelfGroup,warehouse;
   var boxH,boxD,windowD,windowB,boxL,undonePercent,radiumCol,shelfL,shelfH,shelfD,shelfB,shelfRowN,shelfColN
   initShape();
@@ -52,22 +53,25 @@ $(document).ready(function(){
 
 //function 
   function initShape(){
+    cameraP=[500,370,1000];
+    cameraL=[-500,-230,0];
     warehouse=new THREE.Object3D();
     roomGroup=new THREE.Object3D();
     shelfGroup=new THREE.Object3D();
     columnGroup=new THREE.Object3D();
     treeGroup = new THREE.Object3D();
-    boxArr=[];windowArr=[];glassArr=[];textArr=[];bookArr=[];floor1Arr=[];
+    boxArr=[];windowArr=[];glassArr=[];textArr=[];bookArr=[];floor1Arr=[];cataArr=[];
     boxH=50
     boxD=200
     windowD=25
     windowB=4
-    boxL=myBookList.map(function(val,index,arr){
+/*    boxL=myBookList.map(function(val,index,arr){
       if(val!==undefined){
         return 100+25*val.length
       }
       else{return val=100}
-    })
+    })*/
+  boxL=[100,300,200,50]
     undonePercent=myBookList.map(function(val,index,arr){
       if(val!==0){return 1-doneArr[index].length/val.length}
       else{return 1}
@@ -83,6 +87,7 @@ $(document).ready(function(){
     glassArr.forEach(function(value){scene.remove(value)})
     windowArr.forEach(function(value){scene.remove(value)})
     textArr.forEach(function(value){scene.remove(value)})
+    cataArr.forEach(function(value){scene.remove(value)})
     scene.remove(roomGroup,columnGroup,warehouse,shelfGroup);
     initShape()
   }   
@@ -169,10 +174,10 @@ img.onerror=null; 控制不要一直跳动
 
  
   function initCamera() {
-    camera = new THREE.OrthographicCamera(width / - 2, width / 2,height / 2, height / - 2, 0, 2000 );
-    camera.position.set(500,300,1000);
+    camera=new THREE.OrthographicCamera(width / - 2, width / 2,height / 2, height / - 2, 0, 2000 );
     camera.up.set(0,0,0);
-    camera.lookAt(new THREE.Vector3(-500,-300,0));
+    camera.position.set(cameraP[0],cameraP[1],cameraP[2]);
+    camera.lookAt(new THREE.Vector3(cameraL[0],cameraL[1],cameraL[2]));
   }
   function initScene() {
     scene = new THREE.Scene();
@@ -244,8 +249,8 @@ img.onerror=null; 控制不要一直跳动
         box.position.set(boxL[i]/2,boxH*(i+3/2),0);
         scene.add(box);
         boxArr.push(box);
-        var floor1 = new THREE.Mesh(new THREE.CubeGeometry(boxL[i],windowB,boxD+20),whiteM);
-        floor1.position.set(boxL[i]/2,boxH*(i+1)+windowB/2,0);
+        var floor1 = new THREE.Mesh(new THREE.CubeGeometry(boxL[i]+5,windowB,boxD+20),whiteM);
+        floor1.position.set((boxL[i]+5)/2,boxH*(i+1)+windowB/2,0);
         var floor2=floor1.clone();
         floor2.translateOnAxis(new THREE.Vector3(0,1,0),boxH);
         //var wall1= new THREE.Mesh( new THREE.CubeGeometry(2,boxH,boxD), new THREE.MeshLambertMaterial({map:boxMap}));
@@ -260,8 +265,6 @@ img.onerror=null; 控制不要一直跳动
         floor1Arr.push(floor1);
       
       //窗户
-
-      
         var leftL=undonePercent[i]*boxL[i];
         var rightL=(1-undonePercent[i])*boxL[i];
         var doneWindow = new THREE.Object3D();
@@ -276,15 +279,20 @@ img.onerror=null; 控制不要一直跳动
         var glass = new THREE.Mesh(  new THREE.CubeGeometry(rightL,boxH-2*windowB),new THREE.MeshLambertMaterial({map:glassMap}));
         glass.position.set(leftL+rightL/2,boxH*(i+3/2)+windowB/2,(boxD+windowD)/2);
         doneWindow.add(window1,window2,window3,window4);
+        var nothing=new THREE.Mesh(new THREE.CubeGeometry(1,1,1),whiteM);
         if(undonePercent[i]<1){
           scene.add(doneWindow);
           scene.add(glass);
+          windowArr.push(doneWindow);
+          glassArr.push(glass);
         }
-        windowArr.push(doneWindow);
-        glassArr.push(glass);
+        else{
+          windowArr.push(nothing);
+          glassArr.push(nothing);
+        }
         //文字
         var cataName=["NOVEL","PROSE","HISTORY","PHILOSOPHY"];
-        var cataSize=[50,50,40,25];
+        var cataSize=[50,50,32,22];
         (function (position,text,shape){
           new THREE.FontLoader().load('./assets/fonts/optimer_bold.typeface.json',function(font){
             var textGeo=new THREE.TextGeometry(text,{font:font,size:shape[0],height:shape[1]});
@@ -300,36 +308,35 @@ img.onerror=null; 控制不要一直跳动
             textGeo.computeBoundingBox();
             var text3D = new THREE.Mesh(textGeo,whiteM);
             text3D.position.set(position[0],position[1],position[2]);
-            text3D.rotateOnAxis(new THREE.Vector3(0,1,0),Math.PI/2)
-            scene.add(text3D)
+            text3D.rotateOnAxis(new THREE.Vector3(0,1,0),Math.PI/2);
+            scene.add(text3D);
+            cataArr.push(text3D);
           })
-        })([boxL[i],boxH*(i+3/2)-20,(boxD+2*windowD)/2], cataName[i],[cataSize[i],5]); 
+        })([boxL[i],boxH*(i+3/2)-20,(boxD)/2], cataName[i],[cataSize[i],5]); 
       }
       //树
       var treeLeave1 = new THREE.Mesh(new THREE.CylinderGeometry(8,8,10),greenM);
       var treeLeave2=treeLeave1.clone();
       var treeRoot1 = new THREE.Mesh(new THREE.CylinderGeometry(1,1,10),brownM);
       var treeRoot2=treeRoot1.clone();
-      treeLeave1.position.set(-4*radiumCol,boxH*(i+1)+20,-boxD/2+radiumCol*4);
-      treeLeave2.position.set(-4*radiumCol,boxH*(i+1)+20,boxD/2-radiumCol*4);
-      treeRoot1.position.set(-4*radiumCol,boxH*(i+1)+10,-boxD/2+radiumCol*4);
-      treeRoot2.position.set(-4*radiumCol,boxH*(i+1)+10,boxD/2-radiumCol*4);
-      if(i>1){
-        for(j=3;j*50<=boxL[i]&&boxL[i]>boxL[i+1];j++){   
-
-          var treeLeave1s=treeLeave1.clone();
-          var treeLeave2s=treeLeave2.clone();
-          treeLeave1s.translateOnAxis(new THREE.Vector3(1,0,0),50*j);
-          treeLeave2s.translateOnAxis(new THREE.Vector3(1,0,0),50*j);
-          var treeRoot1s=treeRoot1.clone();
-          var treeRoot2s=treeRoot2.clone();
-          treeRoot1s.translateOnAxis(new THREE.Vector3(1,0,0),50*j);
-          treeRoot2s.translateOnAxis(new THREE.Vector3(1,0,0),50*j);
-          columnGroup.add(treeLeave1s,treeLeave2s,treeRoot1s,treeRoot2s);
-        }
-      } 
-      //柱子
+      treeLeave1.position.set(-4*radiumCol,boxH*(i+2)+20,-boxD/2+radiumCol*4);
+      treeLeave2.position.set(-4*radiumCol,boxH*(i+2)+20,boxD/2-radiumCol*4);
+      treeRoot1.position.set(-4*radiumCol,boxH*(i+2)+10,-boxD/2+radiumCol*4);
+      treeRoot2.position.set(-4*radiumCol,boxH*(i+2)+10,boxD/2-radiumCol*4);
+       // for(j=2;j*50<=boxL[i+1]&&boxL[i]>boxL[i+1];j++){   
+      for(j=Math.ceil(boxL[i+1]/50)+1;j*50<=boxL[i]&&boxL[i]>boxL[i+1];j++){ 
+        var treeLeave1s=treeLeave1.clone();
+        var treeLeave2s=treeLeave2.clone();
+        treeLeave1s.translateOnAxis(new THREE.Vector3(1,0,0),50*j);
+        treeLeave2s.translateOnAxis(new THREE.Vector3(1,0,0),50*j);
+        var treeRoot1s=treeRoot1.clone();
+        var treeRoot2s=treeRoot2.clone();
+        treeRoot1s.translateOnAxis(new THREE.Vector3(1,0,0),50*j);
+        treeRoot2s.translateOnAxis(new THREE.Vector3(1,0,0),50*j);
+        columnGroup.add(treeLeave1s,treeLeave2s,treeRoot1s,treeRoot2s);
+      }
       
+      //柱子
       var column = new THREE.Object3D();
       var column1 = new THREE.Mesh( new THREE.CylinderGeometry(radiumCol,radiumCol,boxH*i),columnM);
       var column2=column1.clone();
@@ -375,8 +382,7 @@ img.onerror=null; 控制不要一直跳动
 //点击后退
  $("#back").click(function() {
     cameraStatus=0;
-    camera.position.set(200,300,800);
-    camera.lookAt(new THREE.Vector3(-200,0,0));
+initCamera() 
     cleanObject();
     initObject(1);
    // $("#books").empty($(".book"));
@@ -384,8 +390,8 @@ img.onerror=null; 控制不要一直跳动
     $(".read-state").remove()
     $("#back").hide();  
     $("#info-frame").hide();
-    $("#book").hide();
-
+    $("#books").hide();
+    //$("#books").delegate(".book","mouseenter", function() {$(".button").hide();})
   });
 //点击书单
   $("#list-frame").delegate("div","click", function() {
@@ -473,13 +479,14 @@ img.onerror=null; 控制不要一直跳动
           else{//console.log("same",clickNum,preClickNum);
           console.log("1s");
           $("#back").show();
+          $("#books").show();
           $("#list-frame").hide();
           cameraStatus=2;
           cleanObject();
           initObject(5.5,clickNum);
 
-          camera.position.set(300,300+(clickNum)*boxH-boxH/2,800);
-          camera.lookAt(new THREE.Vector3(-100,0+(clickNum)*boxH-boxH/2,0));
+          camera.position.set(cameraP[0]-1.2*shelfL,cameraP[1]+(clickNum)*boxH-boxH/2,cameraP[2]);
+          camera.lookAt(new THREE.Vector3(cameraL[0]-1.2*shelfL,cameraL[1]+(clickNum)*boxH-boxH/2,cameraL[2]));
 
           shelfGroup.position.set(shelfL*shelfColN/2,clickNum*boxH+shelfB*6,boxD/2-40);
           scene.add(shelfGroup);
@@ -501,16 +508,13 @@ img.onerror=null; 控制不要一直跳动
     mouse.y = (-(e.clientY / height*2)+1)/windowZoom;
     raycaster.setFromCamera(mouse,camera);
     var intersects = raycaster.intersectObjects(scene.children);
-    if ( intersects.length > 0 ) {
+    if ( intersects.length > 0 &&cameraStatus!==2) {
       if ( INTERSECTED != intersects[ 0 ].object ) {
         if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
         var selected = intersects[0];
         if(selected.point.z>112&&selected.point.z<126){
           hoverNum=Math.floor(selected.point.y/boxH);
-
           INTERSECTED = selected.object;
-         // INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-          //INTERSECTED.material.emissive.setHex( 0xffff00 );
           if(hoverNum!==preHoverNum){
             //console.log("hoverdiff",hoverNum,preHoverNum)
             scene.add(textArr[hoverNum-1]);
