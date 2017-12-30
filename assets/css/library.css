@@ -13,9 +13,10 @@ div#canvas-frame {
     position: fixed;  
     z-index: 200;
     display: none;
-    background-color: #dddddd;
+    background-color: rgba(210,200,200,0.8);
     border-radius:10px;
     overflow-y:auto;
+    box-shadow: 10px 10px 10px rgba(20,0,0,0.5);
 }
 
     
@@ -34,7 +35,6 @@ div#back{
     display: none; 
 }
 #books{
-
 	position: fixed;
     z-index: 100;
     width: 0px;
@@ -56,6 +56,7 @@ div#back{
 }
 .button{
     /*background-color: #dddddd;*/
+    /*border: 3px solid red;*/
     position: absolute;
     z-index: 200;
     display: none; 
