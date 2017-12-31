@@ -1,18 +1,38 @@
 $(document).ready(function(){
-//基本预设
+/*var $id=function(n){
+  return document.getElementById(n) || n;
+}
+window.addEventListener("load",draw, false);
+var con=$id("pad").getContext('2d');
+  con.fillStyle='#f00'
+  con.translate(300,100);
+function draw(){
+  var r=0 , a=20 , start = 0 , end= 0;
+  con.rotate(Math.PI);
+  for(var q=0; q<1000; q++){
+    start +=  Math.PI * 2 /1000;
+    end = start + Math.PI * 2 /1000;
+    r=a*Math.sqrt(225/(17-16*Math.sin(start)*Math.sqrt(Math.cos(start)*Math.cos(start))))
+    con.arc(0,0,r,start,end,false);
+}
+con.fill();
+}*/
 
+
+//基本预设
   var scene;
   var light;
   var camera
   var cameraP,cameraL
   var renderer;
+
+
 //书单预设
   var bookList=[];
   var bookListAll=[];
   var cataNum=[245,247,248,257];
-  //var myBookList=[[],[],[],[]];
-  var myBookList=
-  [[{"title":"人生就是不停的战斗","catalog":"小说 成功励志 散文 ","tags":"台湾文学 成长小说 散文随笔 青春励志 青春文学 ","sub1":"九把刀励志作：《人生就是不停的战斗》","sub2":"《人生就是不停的战斗》是台湾著名作家九把刀创作的第一部战斗文学励志作。全书由九把刀的博客文章集结而成，记述了发生在作者生活中大大小小的事情，大到人生哲学、情感专栏、演讲历程，小到和女朋友的一次吵架。\n《人生就是不停的战斗》","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"39179人阅读","bytime":"2014年3月6日"},{"title":"最好的时光在路上","catalog":"散文 旅游 ","tags":"好书推荐 带心灵去旅行 散文随笔 游记 ","sub1":"旅行作家郭子鹰的灵魂悟语：《最好的时光在路上》","sub2":"“一辈子是场修行，短的是旅行，长的是人生。” ","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/b83919999c7d66892c6b994389c32665.jpg","reading":"31374人阅读","bytime":"2014年3月24日"}],[{"title":"人生就是不停的战斗","catalog":"小说 成功励志 散文 ","tags":"台湾文学 成长小说 散文随笔 青春励志 青春文学 ","sub1":"九把刀励志作：《人生就是不停的战斗》","sub2":"《人生就是不停的战斗》是台湾著名作家九把刀创作的第一部战斗文学励志作。全书由九把刀的博客文章集结而成，记述了发生在作者生活中大大小小的事情，大到人生哲学、情感专栏、演讲历程，小到和女朋友的一次吵架。\n《人生就是不停的战斗》","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"39179人阅读","bytime":"2014年3月6日"},{"title":"最好的时光在路上","catalog":"散文 旅游 ","tags":"好书推荐 带心灵去旅行 散文随笔 游记 ","sub1":"旅行作家郭子鹰的灵魂悟语：《最好的时光在路上》","sub2":"“一辈子是场修行，短的是旅行，长的是人生。” ","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/b83919999c7d66892c6b994389c32665.jpg","reading":"31374人阅读","bytime":"2014年3月24日"}],[{"title":"人生就是不停的战斗","catalog":"小说 成功励志 散文 ","tags":"台湾文学 成长小说 散文随笔 青春励志 青春文学 ","sub1":"九把刀励志作：《人生就是不停的战斗》","sub2":"《人生就是不停的战斗》是台湾著名作家九把刀创作的第一部战斗文学励志作。全书由九把刀的博客文章集结而成，记述了发生在作者生活中大大小小的事情，大到人生哲学、情感专栏、演讲历程，小到和女朋友的一次吵架。\n《人生就是不停的战斗》","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"39179人阅读","bytime":"2014年3月6日"},{"title":"最好的时光在路上","catalog":"散文 旅游 ","tags":"好书推荐 带心灵去旅行 散文随笔 游记 ","sub1":"旅行作家郭子鹰的灵魂悟语：《最好的时光在路上》","sub2":"“一辈子是场修行，短的是旅行，长的是人生。” ","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/b83919999c7d66892c6b994389c32665.jpg","reading":"31374人阅读","bytime":"2014年3月24日"}],[{"title":"人生就是不停的战斗","catalog":"小说 成功励志 散文 ","tags":"台湾文学 成长小说 散文随笔 青春励志 青春文学 ","sub1":"九把刀励志作：《人生就是不停的战斗》","sub2":"《人生就是不停的战斗》是台湾著名作家九把刀创作的第一部战斗文学励志作。全书由九把刀的博客文章集结而成，记述了发生在作者生活中大大小小的事情，大到人生哲学、情感专栏、演讲历程，小到和女朋友的一次吵架。\n《人生就是不停的战斗》","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"39179人阅读","bytime":"2014年3月6日"},{"title":"最好的时光在路上","catalog":"散文 旅游 ","tags":"好书推荐 带心灵去旅行 散文随笔 游记 ","sub1":"旅行作家郭子鹰的灵魂悟语：《最好的时光在路上》","sub2":"“一辈子是场修行，短的是旅行，长的是人生。” ","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/b83919999c7d66892c6b994389c32665.jpg","reading":"31374人阅读","bytime":"2014年3月24日"}]]
+  var myBookList=[[],[],[],[]];
+  //var myBookList=[[{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"最好的时光在路上","catalog":"散文 旅游 ","tags":"好书推荐 带心灵去旅行 散文随笔 游记 ","sub1":"旅行作家郭子鹰的灵魂悟语：《最好的时光在路上》","sub2":"“一辈子是场修行，短的是旅行，长的是人生。” ","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/b83919999c7d66892c6b994389c32665.jpg","reading":"31374人阅读","bytime":"2014年3月24日"}],[{"title":"人生就是不停的战斗","catalog":"小说 成功励志 散文 ","tags":"台湾文学 成长小说 散文随笔 青春励志 青春文学 ","sub1":"九把刀励志作：《人生就是不停的战斗》","sub2":"《人生就是不停的战斗》是台湾著名作家九把刀创作的第一部战斗文学励志作。全书由九把刀的博客文章集结而成，记述了发生在作者生活中大大小小的事情，大到人生哲学、情感专栏、演讲历程，小到和女朋友的一次吵架。\n《人生就是不停的战斗》","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"39179人阅读","bytime":"2014年3月6日"},{"title":"最好的时光在路上","catalog":"散文 旅游 ","tags":"好书推荐 带心灵去旅行 散文随笔 游记 ","sub1":"旅行作家郭子鹰的灵魂悟语：《最好的时光在路上》","sub2":"“一辈子是场修行，短的是旅行，长的是人生。” ","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/b83919999c7d66892c6b994389c32665.jpg","reading":"31374人阅读","bytime":"2014年3月24日"}],[{"title":"人生就是不停的战斗","catalog":"小说 成功励志 散文 ","tags":"台湾文学 成长小说 散文随笔 青春励志 青春文学 ","sub1":"九把刀励志作：《人生就是不停的战斗》","sub2":"《人生就是不停的战斗》是台湾著名作家九把刀创作的第一部战斗文学励志作。全书由九把刀的博客文章集结而成，记述了发生在作者生活中大大小小的事情，大到人生哲学、情感专栏、演讲历程，小到和女朋友的一次吵架。\n《人生就是不停的战斗》","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"39179人阅读","bytime":"2014年3月6日"},{"title":"最好的时光在路上","catalog":"散文 旅游 ","tags":"好书推荐 带心灵去旅行 散文随笔 游记 ","sub1":"旅行作家郭子鹰的灵魂悟语：《最好的时光在路上》","sub2":"“一辈子是场修行，短的是旅行，长的是人生。” ","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/b83919999c7d66892c6b994389c32665.jpg","reading":"31374人阅读","bytime":"2014年3月24日"}],[{"title":"人生就是不停的战斗","catalog":"小说 成功励志 散文 ","tags":"台湾文学 成长小说 散文随笔 青春励志 青春文学 ","sub1":"九把刀励志作：《人生就是不停的战斗》","sub2":"《人生就是不停的战斗》是台湾著名作家九把刀创作的第一部战斗文学励志作。全书由九把刀的博客文章集结而成，记述了发生在作者生活中大大小小的事情，大到人生哲学、情感专栏、演讲历程，小到和女朋友的一次吵架。\n《人生就是不停的战斗》","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"39179人阅读","bytime":"2014年3月6日"},{"title":"最好的时光在路上","catalog":"散文 旅游 ","tags":"好书推荐 带心灵去旅行 散文随笔 游记 ","sub1":"旅行作家郭子鹰的灵魂悟语：《最好的时光在路上》","sub2":"“一辈子是场修行，短的是旅行，长的是人生。” ","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/b83919999c7d66892c6b994389c32665.jpg","reading":"31374人阅读","bytime":"2014年3月24日"}]]
   var cameraStatus=0;
   var doneArr=[[],[],[],[]];
   
@@ -32,9 +52,9 @@ $(document).ready(function(){
   else{windowZoom=1}
   $("#canvas-frame").css({"width":width/2+width*windowZoom/2,"height":height/2+height*windowZoom/2,"left":-width*windowZoom/2+width/2,"top":-height*windowZoom/2+height/2});  //windowZoom
 //形状预设
-  var boxArr,windowArr,glassArr,textArr,bookArr,floor1Arr,cataArr;
-  var roomGroup,treeGroup,columnGroup,shelfGroup,warehouse;
-  var boxH,boxD,windowD,windowB,boxL,undonePercent,radiumCol,shelfL,shelfH,shelfD,shelfB,shelfRowN,shelfColN
+  var boxArr,windowArr,glassArr,textArr,bookArr,floor1Arr,cataArr,boardArr;
+  var roomGroup,treeGroup,columnGroup,shelfGroup,warehouse,otherGroup;
+  var boxH,boxD,windowD,windowB,boxL,undonePercent,radiumCol,shelfL,shelfH,shelfD,shelfB,shelfRowN,shelfColN,minL,stairL;
   initShape();
 
 //材质值预设 
@@ -60,18 +80,21 @@ $(document).ready(function(){
     shelfGroup=new THREE.Object3D();
     columnGroup=new THREE.Object3D();
     treeGroup = new THREE.Object3D();
-    boxArr=[];windowArr=[];glassArr=[];textArr=[];bookArr=[];floor1Arr=[];cataArr=[];
+    otherGroup = new THREE.Object3D();
+    boxArr=[];windowArr=[];glassArr=[];textArr=[];bookArr=[];floor1Arr=[];cataArr=[];boardArr=[];
     boxH=50
     boxD=200
+    minL=100
     windowD=25
     windowB=4
-/*    boxL=myBookList.map(function(val,index,arr){
+    stairL=20;
+    boxL=myBookList.map(function(val,index,arr){
       if(val!==undefined){
-        return 100+25*val.length
+        return minL+25*val.length
       }
       else{return val=100}
-    })*/
-  boxL=[100,300,200,50]
+    })
+  //boxL=[100,300,200,50]
     undonePercent=myBookList.map(function(val,index,arr){
       if(val!==0){return 1-doneArr[index].length/val.length}
       else{return 1}
@@ -88,7 +111,8 @@ $(document).ready(function(){
     windowArr.forEach(function(value){scene.remove(value)})
     textArr.forEach(function(value){scene.remove(value)})
     cataArr.forEach(function(value){scene.remove(value)})
-    scene.remove(roomGroup,columnGroup,warehouse,shelfGroup);
+    boardArr.forEach(function(value){scene.remove(value)})
+    scene.remove(roomGroup,columnGroup,warehouse,shelfGroup,otherGroup);
     initShape()
   }   
 
@@ -130,11 +154,7 @@ $(document).ready(function(){
       }
     },3000);
   }
-/*    function nofind(){
-var img=event.srcElement;
-img.src="./assets/img/error.png";
-img.onerror=null; 控制不要一直跳动
-}*/
+
   function renderBook(value,index,arr){
     if(value!==undefined){
       var src=value.img;
@@ -194,9 +214,24 @@ img.onerror=null; 控制不要一直跳动
     scene.add( light )
   }
   function initObject(shapeZoom,clickNum){
-
-    //boxL=[boxL[0]*shapeZoom,boxL[1]*shapeZoom,boxL[2]*shapeZoom,boxL[3]*shapeZoom,boxL[4]*shapeZoom,boxL[5]*shapeZoom]
-    boxL =boxL.map(function(val){return val=val*shapeZoom})
+    function makeBoard(boardP,depth,position,rotation,offset){
+      var boardShape = new THREE.Shape();
+      boardShape.moveTo(boardP[0][0],boardP[0][1])
+      for(var i=0;i<boardP.length;i++){
+        boardShape.lineTo(boardP[i][0],boardP[i][1])
+      }
+      for(var i=boardP.length-1;i>=0;i--){
+        boardShape.lineTo(boardP[i][0],boardP[i][1]-offset)
+      }
+      var boardGeo = new THREE.ExtrudeGeometry( boardShape, {amount: depth,bevelEnabled: false} );
+      var board=new THREE.Mesh(boardGeo,whiteM);
+      board.position.set(position[0],position[1],position[2]);
+      board.rotateOnAxis(new THREE.Vector3(0,1,0),rotation);
+      scene.add(board);
+      boardArr.push(board)
+    }
+    boxL =boxL.map(function(val){return val=val*shapeZoom});
+    minL=minL*shapeZoom;
     boxH=boxH*shapeZoom;
     boxD=boxD*shapeZoom;
     boardRow=boardRow*shapeZoom;
@@ -204,6 +239,35 @@ img.onerror=null; 控制不要一直跳动
     shelfB=shelfB*shapeZoom;
     windowB=windowB*shapeZoom;
     windowD=windowD*shapeZoom;
+    //like
+    var heartShape = new THREE.Shape();
+    var heartP2=[[0,0],[18,25],[53,50],[120,95],[85,130],[45,170],[0,110]]
+    var heartP=heartP2.map(function(val){
+      var newVal=[val[0]/4*shapeZoom,val[1]/4*shapeZoom];
+      return newVal
+    })
+    for(var i=0;i<3;i++){
+    heartShape.bezierCurveTo(heartP[i*2][0],heartP[i*2][1],heartP[i*2+1][0],heartP[i*2+1][1],heartP[i*2+2][0],heartP[i*2+2][1]);
+    }
+    for(var i=2;i>-1;i--){
+    heartShape.bezierCurveTo(-heartP[i*2+2][0],heartP[i*2+2][1],-heartP[i*2+1][0],heartP[i*2+1][1],-heartP[i*2][0],heartP[i*2][1]);
+    }
+    var heartGeo = new THREE.ExtrudeGeometry( heartShape, {amount: boxD,curveSegments: 30,bevelEnabled: false} );
+    var heart=new THREE.Mesh(heartGeo,whiteM);
+    heart.position.set(minL/2,5*boxH+windowB,-boxD/2)
+    otherGroup.add(heart);
+    (function (position,text,shape){
+      new THREE.FontLoader().load('./assets/fonts/optimer_bold.typeface.json',function(font){
+        var textGeo=new THREE.TextGeometry(text,{font:font,size:shape[0],height:shape[1]});
+        textGeo.computeBoundingBox();
+        var text3D = new THREE.Mesh(textGeo,whiteM);
+        text3D.position.set(position[0],position[1],position[2]);
+        text3D.rotateOnAxis(new THREE.Vector3(0,1,0),Math.PI/2);
+        scene.add(text3D);
+        cataArr.push(text3D);
+      })
+    })([0,boxH*5,boxD/2.5], "LIKE",[60*shapeZoom,minL]);
+    makeBoard([[0,0],[boxD/2,boxH*0.6],[boxD,0]],minL,[0,6*boxH,boxD/2],Math.PI/2,windowB)
     
     //草
     var grass= new THREE.Mesh(new THREE.CubeGeometry(width*1.5,2,width),greenM);
@@ -227,7 +291,7 @@ img.onerror=null; 控制不要一直跳动
       var warehouseGeo=new THREE.TextGeometry("GET",{font:font,size:boxH,height:boxD});
       warehouseGeo.computeBoundingBox();
       var warehouseMesh = new THREE.Mesh(warehouseGeo,whiteM);
-      warehouseMesh.position.set(-boxH/5,0,-boxD/2);
+      warehouseMesh.position.set(-minL/4,0,-boxD/2);
       warehouse.add(warehouseMesh);
     })
     //2~6层
@@ -245,7 +309,7 @@ img.onerror=null; 控制不要一直跳动
       })(i);
       //var box = new THREE.Mesh( new THREE.CubeGeometry(boxL[i],boxH,boxD),new THREE.MeshLambertMaterial({map:boxMap}));
       if(i<boxL.length){
-        var box = new THREE.Mesh( new THREE.CubeGeometry(boxL[i],boxH,boxD),whiteM);
+        var box = new THREE.Mesh( new THREE.CubeGeometry(boxL[i],boxH,boxD),new THREE.MeshLambertMaterial({map:boxMap}));
         box.position.set(boxL[i]/2,boxH*(i+3/2),0);
         scene.add(box);
         boxArr.push(box);
@@ -263,7 +327,27 @@ img.onerror=null; 控制不要一直跳动
         roomGroup.add(floor2,wall1,wall2,wall3)
         scene.add(floor1);
         floor1Arr.push(floor1);
-      
+        //stair
+        if(i<3){
+          makeBoard([[stairL*2,0],[boxH*1.8+stairL*2,boxH],[boxH*1.8+stairL*4,boxH]],stairL,[Math.max.apply(Math,boxL),boxH*i*2+windowB,boxD/2],Math.PI/2,windowB)//台阶
+          makeBoard([[stairL*2,0],[boxH*1.8+stairL*2,boxH]],windowB/2,[Math.max.apply(Math,boxL)+stairL,boxH*i*2+boxH/3,boxD/2],Math.PI/2,boxH/3);//斜扶手1
+          makeBoard([[stairL*2,0],[boxH*1.8+stairL*2,boxH]],windowB/2,[Math.max.apply(Math,boxL),boxH*i*2+boxH/3,boxD/2],Math.PI/2,boxH/3);//斜扶手0
+          makeBoard([[boxL[i+1],0],[Math.max.apply(Math,boxL)+1,0]],windowB/2,[0,boxH*(i*2+1+1/3),boxD/2-1.8*boxH-2*stairL],0,boxH/3)//平扶手2
+
+        }
+        if(i<2){ 
+          makeBoard([[boxH*1.8+stairL*2,0],[stairL*2,boxH]],stairL,[Math.max.apply(Math,boxL)+stairL,boxH*(i*2+1)+windowB,boxD/2],Math.PI/2,windowB)
+          makeBoard([[boxH*1.8+stairL*4,0],[boxH*1.8+stairL*2,0],[stairL*2,boxH],[0,boxH]],windowB/2,[Math.max.apply(Math,boxL)+stairL*2-windowB/2,boxH*(i*2+1)+boxH/3,boxD/2],Math.PI/2,boxH/3)
+          makeBoard([[boxL[i*2],0],[Math.max.apply(Math,boxL)+stairL*2,0]],stairL*2,[0,boxH*(i*2+2)+windowB,boxD/2-2*stairL],0,windowB)//走廊0
+          makeBoard([[boxL[i*2],0],[Math.max.apply(Math,boxL)+stairL*2,0]],stairL*2,[0,boxH*(i*2+1)+windowB,boxD/2-1.8*boxH-4*stairL],0,windowB)//走廊1
+          makeBoard([[boxL[2*i+1],0],[Math.max.apply(Math,boxL)+stairL*2,0]],windowB/2,[0,boxH*(i*2+2+1/3),boxD/2],0,boxH/3)//平扶手0
+          makeBoard([[boxL[2*i],0],[Math.max.apply(Math,boxL)+stairL*2,0]],windowB/2,[0,boxH*(i*2+1+1/3),boxD/2-1.8*boxH-4*stairL],0,boxH/3)//平扶手3
+          makeBoard([[boxL[i+1],0],[Math.max.apply(Math,boxL)+1,0]],windowB/2,[0,boxH*(i*2+2+1/3),boxD/2-2*stairL],0,boxH/3)//平扶手1
+        }
+          makeBoard([[boxL[i],0],[Math.max.apply(Math,boxL)+stairL,0]],stairL*2,[0,boxH*(2*2+1)+windowB,boxD/2-1.8*boxH-4*stairL],0,windowB)//走廊1-2
+          makeBoard([[boxL[i],0],[Math.max.apply(Math,boxL)+stairL,0]],windowB/2,[0,boxH*(2*2+1+1/3),boxD/2-1.8*boxH-4*stairL],0,boxH/3)//竖扶手-2
+
+          makeBoard([[0,0],[stairL*2,0]],windowB/2,[Math.max.apply(Math,boxL)+stairL,boxH*(2*2+1+1/3),boxD/2-1.8*boxH-2*stairL],Math.PI/2,boxH/3)
       //窗户
         var leftL=undonePercent[i]*boxL[i];
         var rightL=(1-undonePercent[i])*boxL[i];
@@ -292,7 +376,7 @@ img.onerror=null; 控制不要一直跳动
         }
         //文字
         var cataName=["NOVEL","PROSE","HISTORY","PHILOSOPHY"];
-        var cataSize=[50,50,32,22];
+        var cataSize=[43,45,32,22];
         (function (position,text,shape){
           new THREE.FontLoader().load('./assets/fonts/optimer_bold.typeface.json',function(font){
             var textGeo=new THREE.TextGeometry(text,{font:font,size:shape[0],height:shape[1]});
@@ -301,7 +385,7 @@ img.onerror=null; 控制不要一直跳动
             text3D.position.set(position[0],position[1],position[2]);
             textArr.push(text3D);
           })
-        })([leftL+rightL/2-30,boxH*(i+3/2)-10,(boxD+2*windowD)/2], Math.floor((1-undonePercent[i])*100)+"%",[20,0.5]);
+        })([leftL+rightL/2-30,boxH*(i+3/2)-10,(boxD+2*windowD)/2], Math.floor((1-undonePercent[i])*100)+"%",[20*shapeZoom,0.5]);
         (function (position,text,shape){
           new THREE.FontLoader().load('./assets/fonts/optimer_bold.typeface.json',function(font){
             var textGeo=new THREE.TextGeometry(text,{font:font,size:shape[0],height:shape[1]});
@@ -312,7 +396,7 @@ img.onerror=null; 控制不要一直跳动
             scene.add(text3D);
             cataArr.push(text3D);
           })
-        })([boxL[i],boxH*(i+3/2)-20,(boxD)/2], cataName[i],[cataSize[i],5]); 
+        })([boxL[i],boxH*(i+3/2)-20,(boxD)/2], cataName[i],[cataSize[i]*shapeZoom,5*shapeZoom]); 
       }
       //树
       var treeLeave1 = new THREE.Mesh(new THREE.CylinderGeometry(8,8,10),greenM);
@@ -359,7 +443,7 @@ img.onerror=null; 控制不要一直跳动
       }
     
     scene.add(grass);
-    scene.add(roomGroup,columnGroup,treeGroup,warehouse);
+    scene.add(roomGroup,columnGroup,treeGroup,warehouse,otherGroup);
     scene.remove(boxArr[clickNum-1],windowArr[clickNum-1],glassArr[clickNum-1]); 
 
   }
@@ -406,21 +490,23 @@ initCamera()
       renderBook(list[list.length-1]);
     }*/
   });
-  //悬停书本
+  //悬停书本backgroundColor:black
   var hoverId;
     $("#books").delegate(".book","mouseenter", function() {
-      var buttonLeft=this.id*shelfL*windowZoom;
-      var buttonTop1=-shelfL*windowZoom*Math.floor(this.id/(shelfColN-1))
-      var buttonTop2=-shelfL*windowZoom*Math.floor(this.id/(shelfColN-1))+shelfL*windowZoom/2
-      var buttonHeight=shelfL*windowZoom/2;
-      var buttonWidth=shelfL*windowZoom;
-      
+      var buttonLeft=(this.id-(shelfColN-1)*Math.floor(this.id/(shelfColN-1)))*shelfL*windowZoom+0.1*shelfL*windowZoom;
+      var buttonTop1=shelfL*windowZoom*Math.floor(this.id/(shelfColN-1))+shelfL*windowZoom*0.18
+      var buttonTop2=shelfL*windowZoom*Math.floor(this.id/(shelfColN-1))+shelfL*windowZoom*0.58
+      console.log(Math.floor(this.id/(shelfColN-1)))
+      var buttonHeight=shelfL*windowZoom/2*0.8;
+      var buttonWidth=shelfL*windowZoom*0.6;
+      /*'width:"+shelfL*windowZoom*0.6+"px;height:"+shelfL*windowZoom*0.8+"px;left:"+shelfL*windowZoom*0.1+"px;top:"+shelfL*windowZoom*0.18+"px'*/
       hoverId=this.id;
       $(".button").show();
       $(".button").css({"left":buttonLeft,"width":buttonWidth,"height":buttonHeight,"font-size":buttonHeight*0.5})
       $("#read-button").css({"top":buttonTop1});
       $("#like-button").css({"top":buttonTop2});
-      $("#info-frame").text(myBookList[clickNum-1][this.id].sub2)
+      var thisBook=myBookList[clickNum-1][this.id];
+      $("#info-frame").html("<h4>《"+thisBook.title+"》</h4><p>分类："+thisBook.catalog+"</p><p>标签："+thisBook.tags+"</p><p>"+myBookList[clickNum-1][this.id].sub2+"</p>")
       $("#info-frame").show();
       $("#info-frame").css({"height":height-150,"width":width/5,"top":50,"left":50});
   });

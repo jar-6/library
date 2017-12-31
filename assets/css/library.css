@@ -61,7 +61,15 @@ div#back{
     z-index: 200;
     display: none; 
     font-weight: bold;
+    /*padding: 20px;*/
+    text-align: center;
+    color: white;
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.8);
 
+
+}
+#like-button{
+background-color: rgba(0,0,0,0.8);
 }
 .read-state{
     position: absolute;
