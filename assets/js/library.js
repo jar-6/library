@@ -33,10 +33,10 @@ con.fill();
   var cataNum=[245,247,248,257];
   var myBookList=[[],[],[],[]];
   //var myBookList=[[{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"人","catalog":"小说","tags":"台 ","sub1":"九","sub2":"《","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"3人阅读","bytime":"2"},{"title":"最好的时光在路上","catalog":"散文 旅游 ","tags":"好书推荐 带心灵去旅行 散文随笔 游记 ","sub1":"旅行作家郭子鹰的灵魂悟语：《最好的时光在路上》","sub2":"“一辈子是场修行，短的是旅行，长的是人生。” ","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/b83919999c7d66892c6b994389c32665.jpg","reading":"31374人阅读","bytime":"2014年3月24日"}],[{"title":"人生就是不停的战斗","catalog":"小说 成功励志 散文 ","tags":"台湾文学 成长小说 散文随笔 青春励志 青春文学 ","sub1":"九把刀励志作：《人生就是不停的战斗》","sub2":"《人生就是不停的战斗》是台湾著名作家九把刀创作的第一部战斗文学励志作。全书由九把刀的博客文章集结而成，记述了发生在作者生活中大大小小的事情，大到人生哲学、情感专栏、演讲历程，小到和女朋友的一次吵架。\n《人生就是不停的战斗》","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"39179人阅读","bytime":"2014年3月6日"},{"title":"最好的时光在路上","catalog":"散文 旅游 ","tags":"好书推荐 带心灵去旅行 散文随笔 游记 ","sub1":"旅行作家郭子鹰的灵魂悟语：《最好的时光在路上》","sub2":"“一辈子是场修行，短的是旅行，长的是人生。” ","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/b83919999c7d66892c6b994389c32665.jpg","reading":"31374人阅读","bytime":"2014年3月24日"}],[{"title":"人生就是不停的战斗","catalog":"小说 成功励志 散文 ","tags":"台湾文学 成长小说 散文随笔 青春励志 青春文学 ","sub1":"九把刀励志作：《人生就是不停的战斗》","sub2":"《人生就是不停的战斗》是台湾著名作家九把刀创作的第一部战斗文学励志作。全书由九把刀的博客文章集结而成，记述了发生在作者生活中大大小小的事情，大到人生哲学、情感专栏、演讲历程，小到和女朋友的一次吵架。\n《人生就是不停的战斗》","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"39179人阅读","bytime":"2014年3月6日"},{"title":"最好的时光在路上","catalog":"散文 旅游 ","tags":"好书推荐 带心灵去旅行 散文随笔 游记 ","sub1":"旅行作家郭子鹰的灵魂悟语：《最好的时光在路上》","sub2":"“一辈子是场修行，短的是旅行，长的是人生。” ","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/b83919999c7d66892c6b994389c32665.jpg","reading":"31374人阅读","bytime":"2014年3月24日"}],[{"title":"人生就是不停的战斗","catalog":"小说 成功励志 散文 ","tags":"台湾文学 成长小说 散文随笔 青春励志 青春文学 ","sub1":"九把刀励志作：《人生就是不停的战斗》","sub2":"《人生就是不停的战斗》是台湾著名作家九把刀创作的第一部战斗文学励志作。全书由九把刀的博客文章集结而成，记述了发生在作者生活中大大小小的事情，大到人生哲学、情感专栏、演讲历程，小到和女朋友的一次吵架。\n《人生就是不停的战斗》","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/99d98edde4eb65b8de2a650ce967d2de.jpg","reading":"39179人阅读","bytime":"2014年3月6日"},{"title":"最好的时光在路上","catalog":"散文 旅游 ","tags":"好书推荐 带心灵去旅行 散文随笔 游记 ","sub1":"旅行作家郭子鹰的灵魂悟语：《最好的时光在路上》","sub2":"“一辈子是场修行，短的是旅行，长的是人生。” ","img":"http:\/\/apis.juhe.cn\/goodbook\/img\/b83919999c7d66892c6b994389c32665.jpg","reading":"31374人阅读","bytime":"2014年3月24日"}]]
+  //var bookListAll=myBookList[0]
   var cameraStatus=0;
   var doneArr=[[],[],[],[]];
-  
-  
+  var likeArr=[];
 //鼠标预设
   var clickNum;
   var hoverNum;
@@ -64,11 +64,11 @@ con.fill();
   var greenM = new THREE.MeshLambertMaterial({color:0x2E8B57});
   var brownM = new THREE.MeshLambertMaterial({color:0x330000});
   var loader=new THREE.TextureLoader();
-  var grassMap = loader.load( './assets/img/grass.jpg', function ( grassMap ) {
-    grassMap.wrapS = THREE.RepeatWrapping;
-    grassMap.repeat.set(3, 1.5 );
+  var heartMap = loader.load( "./assets/img/heart.jpg", function ( heartMap ) {
+    heartMap.wrapS = THREE.RepeatWrapping;
+    heartMap.repeat.set(0.01, 0.01);
   });
-  var grassM = new THREE.MeshLambertMaterial({map:grassMap})
+  var heartM = new THREE.MeshLambertMaterial({map:heartMap})
  
 
 //function 
@@ -147,14 +147,19 @@ con.fill();
         //console.log("add2",bookListAll);
       }
       bookListAll.sort(sortReading);
-      //console.log("fanal",bookListAll);
+      var bookListAll2=bookListAll.filter(function(val,index,arr){
+        if(index<bookListAll.length-1)
+        return val.title!==arr[index+1].title
+      })
+      bookListAll=bookListAll2
+      console.log("fanal",bookListAll[0].title);
       for(var i=0;i<bookListAll.length;i++){
         var book="<div class='list' id="+bookListAll[i].catalogId+">"+bookListAll[i].title+"</div>"
         $("#list-frame").append(book);
       }
     },3000);
   }
-
+//console.log(bookListAll)
   function renderBook(value,index,arr){
     if(value!==undefined){
       var src=value.img;
@@ -164,22 +169,43 @@ con.fill();
     }
   }
 
-  function putBook(clickNum){
+  function putBook(list){
     console.log("putbook")
-    var list=myBookList[clickNum-1];
     var frameWidth=shelfL*(shelfColN-1)*windowZoom
     var frameHeight=shelfH*(shelfRowN-1)*windowZoom
     $("#books").css({"width":frameWidth,"height":frameHeight,"left":width/2-frameWidth/2,"top":width/3*2/2-frameHeight+boxH*windowZoom/2-frameHeight/2-windowB*windowZoom});
-    var list=myBookList[clickNum-1]
     //var list=[1,2,3,3,3,3,3];
     list.forEach(renderBook)
-    doneArr[clickNum-1].forEach(showDone)
+    if(clickNum<5){
+      doneArr[clickNum-1].forEach(showDone)
+    }
   }
   function showDone(val,index,arr){
     var index=parseInt(val);
     var buttonLeft=index*shelfL*windowZoom;
     var buttonTop=-shelfL*windowZoom*Math.floor(index/(shelfColN-1))
     $("#books").append("<div class='read-state' style='left:"+buttonLeft+"px;top:"+buttonTop+"px'><img src='./assets/img/done.png'/></div>")
+  }
+  function openFloor(){
+    scene.remove(boxArr[clickNum-1],windowArr[clickNum-1],glassArr[clickNum-1]);
+    scene.add(shelfGroup);
+    shelfGroup.position.set(shelfL*shelfColN/2,clickNum*boxH+2+windowB/2,boxD/2-30);
+  }
+  function closeFloor(){
+    scene.add(boxArr[preClickNum-1],windowArr[preClickNum-1],glassArr[preClickNum-1]);
+  }
+  function seeShelf(){
+    $("#back").show();
+    $("#books").show();
+    $("#list-frame").hide();
+    cameraStatus=2;
+    cleanObject();
+    initObject(5.5,clickNum);
+    camera.position.set(cameraP[0]-1.2*shelfL,cameraP[1]+(clickNum)*boxH-boxH/2,cameraP[2]);
+    camera.lookAt(new THREE.Vector3(cameraL[0]-1.2*shelfL,cameraL[1]+(clickNum)*boxH-boxH/2,cameraL[2]));
+    shelfGroup.position.set(shelfL*shelfColN/2,clickNum*boxH+shelfB*6,boxD/2-40);
+    scene.add(shelfGroup);
+    scene.remove(columnGroup);
   }
   function initThree() {
     renderer = new THREE.WebGLRenderer({
@@ -239,7 +265,9 @@ con.fill();
     shelfB=shelfB*shapeZoom;
     windowB=windowB*shapeZoom;
     windowD=windowD*shapeZoom;
+    stairL=stairL*shapeZoom;
     //like
+
     var heartShape = new THREE.Shape();
     var heartP2=[[0,0],[18,25],[53,50],[120,95],[85,130],[45,170],[0,110]]
     var heartP=heartP2.map(function(val){
@@ -253,7 +281,7 @@ con.fill();
     heartShape.bezierCurveTo(-heartP[i*2+2][0],heartP[i*2+2][1],-heartP[i*2+1][0],heartP[i*2+1][1],-heartP[i*2][0],heartP[i*2][1]);
     }
     var heartGeo = new THREE.ExtrudeGeometry( heartShape, {amount: boxD,curveSegments: 30,bevelEnabled: false} );
-    var heart=new THREE.Mesh(heartGeo,whiteM);
+    var heart=new THREE.Mesh(heartGeo,heartM);
     heart.position.set(minL/2,5*boxH+windowB,-boxD/2)
     otherGroup.add(heart);
     (function (position,text,shape){
@@ -291,13 +319,17 @@ con.fill();
       var warehouseGeo=new THREE.TextGeometry("GET",{font:font,size:boxH,height:boxD});
       warehouseGeo.computeBoundingBox();
       var warehouseMesh = new THREE.Mesh(warehouseGeo,whiteM);
-      warehouseMesh.position.set(-minL/4,0,-boxD/2);
+      warehouseMesh.position.set(-minL/4.5,0,-boxD/2);
       warehouse.add(warehouseMesh);
     })
     //2~6层
     for(var i=0;i<boxL.length+2;i++){
-      var boxMap;var glassMap;
-      (function(num){
+      var boxMap;var glassMap; 
+
+
+      //var box = new THREE.Mesh( new THREE.CubeGeometry(boxL[i],boxH,boxD),new THREE.MeshLambertMaterial({map:boxMap}));
+      if(i<boxL.length){
+        (function(num){
         boxMap = loader.load( "./assets/img/"+parseInt(num+1)+"f.jpg", function ( boxMap ) {
           boxMap.wrapS = THREE.RepeatWrapping;
           boxMap.repeat.set(boxL[num]/100, 0.5);
@@ -307,8 +339,6 @@ con.fill();
         glassMap.repeat.set((1-undonePercent[num])*boxL[num]/30, 0.1);
         });
       })(i);
-      //var box = new THREE.Mesh( new THREE.CubeGeometry(boxL[i],boxH,boxD),new THREE.MeshLambertMaterial({map:boxMap}));
-      if(i<boxL.length){
         var box = new THREE.Mesh( new THREE.CubeGeometry(boxL[i],boxH,boxD),new THREE.MeshLambertMaterial({map:boxMap}));
         box.position.set(boxL[i]/2,boxH*(i+3/2),0);
         scene.add(box);
@@ -329,25 +359,25 @@ con.fill();
         floor1Arr.push(floor1);
         //stair
         if(i<3){
-          makeBoard([[stairL*2,0],[boxH*1.8+stairL*2,boxH],[boxH*1.8+stairL*4,boxH]],stairL,[Math.max.apply(Math,boxL),boxH*i*2+windowB,boxD/2],Math.PI/2,windowB)//台阶
-          makeBoard([[stairL*2,0],[boxH*1.8+stairL*2,boxH]],windowB/2,[Math.max.apply(Math,boxL)+stairL,boxH*i*2+boxH/3,boxD/2],Math.PI/2,boxH/3);//斜扶手1
-          makeBoard([[stairL*2,0],[boxH*1.8+stairL*2,boxH]],windowB/2,[Math.max.apply(Math,boxL),boxH*i*2+boxH/3,boxD/2],Math.PI/2,boxH/3);//斜扶手0
-          makeBoard([[boxL[i+1],0],[Math.max.apply(Math,boxL)+1,0]],windowB/2,[0,boxH*(i*2+1+1/3),boxD/2-1.8*boxH-2*stairL],0,boxH/3)//平扶手2
+          makeBoard([[stairL*2,0],[boxH*1.8+stairL*2,boxH],[boxH*1.8+stairL*4,boxH]],stairL,[Math.max.apply(Math,boxL)+stairL,boxH*i*2+windowB,boxD/2],Math.PI/2,windowB)//台阶
+          makeBoard([[stairL*2,0],[boxH*1.8+stairL*2,boxH]],windowB/2,[Math.max.apply(Math,boxL)+stairL+stairL,boxH*i*2+boxH/3,boxD/2],Math.PI/2,boxH/3);//斜扶手1
+          makeBoard([[stairL*2,0],[boxH*1.8+stairL*2,boxH]],windowB/2,[Math.max.apply(Math,boxL)+stairL,boxH*i*2+boxH/3,boxD/2],Math.PI/2,boxH/3);//斜扶手0
+          makeBoard([[boxL[i+1]-stairL,0],[Math.max.apply(Math,boxL)+1,0]],windowB/2,[+stairL,boxH*(i*2+1+1/3),boxD/2-1.8*boxH-2*stairL],0,boxH/3)//平扶手2
 
         }
         if(i<2){ 
-          makeBoard([[boxH*1.8+stairL*2,0],[stairL*2,boxH]],stairL,[Math.max.apply(Math,boxL)+stairL,boxH*(i*2+1)+windowB,boxD/2],Math.PI/2,windowB)
-          makeBoard([[boxH*1.8+stairL*4,0],[boxH*1.8+stairL*2,0],[stairL*2,boxH],[0,boxH]],windowB/2,[Math.max.apply(Math,boxL)+stairL*2-windowB/2,boxH*(i*2+1)+boxH/3,boxD/2],Math.PI/2,boxH/3)
-          makeBoard([[boxL[i*2],0],[Math.max.apply(Math,boxL)+stairL*2,0]],stairL*2,[0,boxH*(i*2+2)+windowB,boxD/2-2*stairL],0,windowB)//走廊0
-          makeBoard([[boxL[i*2],0],[Math.max.apply(Math,boxL)+stairL*2,0]],stairL*2,[0,boxH*(i*2+1)+windowB,boxD/2-1.8*boxH-4*stairL],0,windowB)//走廊1
-          makeBoard([[boxL[2*i+1],0],[Math.max.apply(Math,boxL)+stairL*2,0]],windowB/2,[0,boxH*(i*2+2+1/3),boxD/2],0,boxH/3)//平扶手0
-          makeBoard([[boxL[2*i],0],[Math.max.apply(Math,boxL)+stairL*2,0]],windowB/2,[0,boxH*(i*2+1+1/3),boxD/2-1.8*boxH-4*stairL],0,boxH/3)//平扶手3
-          makeBoard([[boxL[i+1],0],[Math.max.apply(Math,boxL)+1,0]],windowB/2,[0,boxH*(i*2+2+1/3),boxD/2-2*stairL],0,boxH/3)//平扶手1
+          makeBoard([[boxH*1.8+stairL*2,0],[stairL*2,boxH]],stairL,[Math.max.apply(Math,boxL)+stairL+stairL,boxH*(i*2+1)+windowB,boxD/2],Math.PI/2,windowB)
+          makeBoard([[boxH*1.8+stairL*4,0],[boxH*1.8+stairL*2,0],[stairL*2,boxH],[0,boxH]],windowB/2,[Math.max.apply(Math,boxL)+stairL*2-windowB/2+stairL,boxH*(i*2+1)+boxH/3,boxD/2],Math.PI/2,boxH/3)
+          makeBoard([[boxL[i*2]-stairL,0],[Math.max.apply(Math,boxL)+stairL*2,0]],stairL*2,[+stairL,boxH*(i*2+2)+windowB,boxD/2-2*stairL],0,windowB)//走廊0
+          makeBoard([[boxL[i*2]-stairL,0],[Math.max.apply(Math,boxL)+stairL*2,0]],stairL*2,[+stairL,boxH*(i*2+1)+windowB,boxD/2-1.8*boxH-4*stairL],0,windowB)//走廊1
+          makeBoard([[boxL[2*i+1]-stairL,0],[Math.max.apply(Math,boxL)+stairL*2,0]],windowB/2,[+stairL,boxH*(i*2+2+1/3),boxD/2],0,boxH/3)//平扶手0
+          makeBoard([[boxL[2*i]-stairL,0],[Math.max.apply(Math,boxL)+stairL*2,0]],windowB/2,[+stairL,boxH*(i*2+1+1/3),boxD/2-1.8*boxH-4*stairL],0,boxH/3)//平扶手3
+          makeBoard([[boxL[i+1]-stairL,0],[Math.max.apply(Math,boxL)+1,0]],windowB/2,[+stairL,boxH*(i*2+2+1/3),boxD/2-2*stairL],0,boxH/3)//平扶手1
         }
-          makeBoard([[boxL[i],0],[Math.max.apply(Math,boxL)+stairL,0]],stairL*2,[0,boxH*(2*2+1)+windowB,boxD/2-1.8*boxH-4*stairL],0,windowB)//走廊1-2
-          makeBoard([[boxL[i],0],[Math.max.apply(Math,boxL)+stairL,0]],windowB/2,[0,boxH*(2*2+1+1/3),boxD/2-1.8*boxH-4*stairL],0,boxH/3)//竖扶手-2
+          makeBoard([[boxL[i]-stairL,0],[Math.max.apply(Math,boxL)+stairL,0]],stairL*2,[+stairL,boxH*(2*2+1)+windowB,boxD/2-1.8*boxH-4*stairL],0,windowB)//走廊1-2
+          makeBoard([[boxL[i]-stairL,0],[Math.max.apply(Math,boxL)+stairL,0]],windowB/2,[+stairL,boxH*(2*2+1+1/3),boxD/2-1.8*boxH-4*stairL],0,boxH/3)//平扶手-2
 
-          makeBoard([[0,0],[stairL*2,0]],windowB/2,[Math.max.apply(Math,boxL)+stairL,boxH*(2*2+1+1/3),boxD/2-1.8*boxH-2*stairL],Math.PI/2,boxH/3)
+          makeBoard([[0,0],[stairL*2,0]],windowB/2,[Math.max.apply(Math,boxL)+stairL+stairL,boxH*(2*2+1+1/3),boxD/2-1.8*boxH-2*stairL],Math.PI/2,boxH/3)
       //窗户
         var leftL=undonePercent[i]*boxL[i];
         var rightL=(1-undonePercent[i])*boxL[i];
@@ -466,31 +496,27 @@ con.fill();
 //点击后退
  $("#back").click(function() {
     cameraStatus=0;
-initCamera() 
+    initCamera() 
     cleanObject();
     initObject(1);
-   // $("#books").empty($(".book"));
     $(".book").remove()
     $(".read-state").remove()
     $("#back").hide();  
     $("#info-frame").hide();
     $("#books").hide();
-    //$("#books").delegate(".book","mouseenter", function() {$(".button").hide();})
   });
 //点击书单
   $("#list-frame").delegate("div","click", function() {
     var num1=parseInt(this.id.split("-")[0],10);
-    var num2=parseInt(this.id.split("-")[1],10);;
-    //console.log(num1,num2);
+    var num2=parseInt(this.id.split("-")[1],10);
+    console.log(this.style.cssText);
+   this.style.cssText="color:#968"
     myBookList[num1].push(bookList[num1][num2]) 
     console.log(myBookList);
     cleanObject();
     initObject(1);
-/*    if(cameraStatus===1){var list=myBookList[clickNum-2];
-      renderBook(list[list.length-1]);
-    }*/
+
   });
-  //悬停书本backgroundColor:black
   var hoverId;
     $("#books").delegate(".book","mouseenter", function() {
       var buttonLeft=(this.id-(shelfColN-1)*Math.floor(this.id/(shelfColN-1)))*shelfL*windowZoom+0.1*shelfL*windowZoom;
@@ -499,7 +525,6 @@ initCamera()
       console.log(Math.floor(this.id/(shelfColN-1)))
       var buttonHeight=shelfL*windowZoom/2*0.8;
       var buttonWidth=shelfL*windowZoom*0.6;
-      /*'width:"+shelfL*windowZoom*0.6+"px;height:"+shelfL*windowZoom*0.8+"px;left:"+shelfL*windowZoom*0.1+"px;top:"+shelfL*windowZoom*0.18+"px'*/
       hoverId=this.id;
       $(".button").show();
       $(".button").css({"left":buttonLeft,"width":buttonWidth,"height":buttonHeight,"font-size":buttonHeight*0.5})
@@ -517,7 +542,8 @@ initCamera()
 
     })
     $("#like-button").click(function(){
-      //console.log("like-button");
+      likeArr.push(myBookList[clickNum-1][hoverId])
+      console.log(myBookList[clickNum-1][hoverId])
     })
 
 //点击楼层
@@ -541,52 +567,39 @@ initCamera()
         }
         scene.add(boxArr[preClickNum-1],windowArr[preClickNum-1],glassArr[preClickNum-1]);
        }
-      else if(clickNum>=1&&clickNum<6){
+      else if(clickNum>=1&&clickNum<5){
         //console.log("library");
         if(cameraStatus===0){
           cameraStatus=1;
-          scene.remove(boxArr[clickNum-1],windowArr[clickNum-1],glassArr[clickNum-1]);
-          scene.add(shelfGroup);
-          shelfGroup.position.set(shelfL*shelfColN/2,clickNum*boxH+2+windowB/2,boxD/2-30);
+          openFloor();
           if(clickNum!==preClickNum){
-            console.log("0d");
-            scene.add(boxArr[preClickNum-1],windowArr[preClickNum-1],glassArr[preClickNum-1]);
+            closeFloor();
           }
         }
-
         else if(cameraStatus===1){
-          if(clickNum!==preClickNum){
-            console.log("1d");
-          scene.remove(boxArr[clickNum-1],windowArr[clickNum-1],glassArr[clickNum-1]);
-          scene.add(shelfGroup);
-          shelfGroup.position.set(shelfL*shelfColN/2,clickNum*boxH+2+windowB/2,boxD/2-30);
-          scene.add(boxArr[preClickNum-1],windowArr[preClickNum-1],glassArr[preClickNum-1]);
+          if(clickNum===preClickNum){
+            console.log("1s");
+            seeShelf();
+            putBook(myBookList[clickNum-1]);
           }
-          else{//console.log("same",clickNum,preClickNum);
-          console.log("1s");
-          $("#back").show();
-          $("#books").show();
-          $("#list-frame").hide();
-          cameraStatus=2;
-          cleanObject();
-          initObject(5.5,clickNum);
-
-          camera.position.set(cameraP[0]-1.2*shelfL,cameraP[1]+(clickNum)*boxH-boxH/2,cameraP[2]);
-          camera.lookAt(new THREE.Vector3(cameraL[0]-1.2*shelfL,cameraL[1]+(clickNum)*boxH-boxH/2,cameraL[2]));
-
-          shelfGroup.position.set(shelfL*shelfColN/2,clickNum*boxH+shelfB*6,boxD/2-40);
-          scene.add(shelfGroup);
-          
-          scene.remove(columnGroup);
-          putBook(clickNum);
+          else{
+            console.log("1d");
+            openFloor();
+            closeFloor();
+          }
         }
-        }
-        else{}
       }
-      else{console.log("nothing")}
+      else{
+        console.log("6");
+
+        seeShelf();
+        scene.remove(otherGroup)
+        putBook(likeArr)
+      }
       preClickNum=clickNum;
     }
   }
+
 //悬停楼层
   window.addEventListener("mousemove",onmousemove);
   function onmousemove(e){
